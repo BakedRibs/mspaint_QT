@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mspaint_qt.cpp
+        mspaint_qt.cpp \
+    mypainterwidget.cpp
 
-HEADERS  += mspaint_qt.h
+HEADERS  += mspaint_qt.h \
+    mypainterwidget.h
 
 FORMS    += mspaint_qt.ui
