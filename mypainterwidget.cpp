@@ -2,10 +2,15 @@
 
 MyPainterWidget::MyPainterWidget(QWidget *parent) : QWidget(parent)
 {
-    setMinimumSize(240,120);
-    setMaximumSize(480,120);
+    setMinimumSize(1024,768);
+    //setMaximumSize(480,120);
     this->setMouseTracking(true);
     this->isPressed = false;
+
+    this->setAutoFillBackground(true);
+    QPalette pal;
+    pal.setColor(QPalette::Background,Qt::white);
+    this->setPalette(pal);
 }
 
 MyPainterWidget::~MyPainterWidget()
@@ -18,7 +23,7 @@ void MyPainterWidget::paintEvent(QPaintEvent *p)
     QPainter painter(this);
     QPen pen;
     pen.setColor(Qt::black);
-    pen.setWidth(5);
+    pen.setWidth(1);
     painter.setPen(pen);
 
     for(int i=0;i<lines.size();i++)

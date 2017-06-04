@@ -9,6 +9,7 @@
 #include <QPainter>
 #include <QPen>
 #include <QMouseEvent>
+#include <QPalette>
 
 typedef struct myLine
 {
