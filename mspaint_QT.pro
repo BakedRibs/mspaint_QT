@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mspaint_qt.cpp \
-    mypainterwidget.cpp
+    mypainterwidget.cpp \
+    maincontrolpanel.cpp \
+    toolsfunctionwidget.cpp
 
 HEADERS  += mspaint_qt.h \
-    mypainterwidget.h
+    mypainterwidget.h \
+    maincontrolpanel.h \
+    toolsfunctionwidget.h
 
 FORMS    += mspaint_qt.ui
