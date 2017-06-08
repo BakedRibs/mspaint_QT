@@ -2,6 +2,7 @@
 #define TOOLSFUNCTIONWIDGET_H
 
 #include <QWidget>
+#include <QGridLayout>
 #include <QToolButton>
 
 class toolsFunctionWidget : public QWidget

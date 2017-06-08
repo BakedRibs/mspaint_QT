@@ -12,17 +12,17 @@ TARGET = mspaint_QT
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
+SOURCES +=\
     mypainterwidget.cpp \
     maincontrolpanel.cpp \
     toolsfunctionwidget.cpp \
-    mspaint_qt.cpp
+    main.cpp \
+    paint_qt.cpp
 
 HEADERS  += \
     mypainterwidget.h \
     maincontrolpanel.h \
     toolsfunctionwidget.h \
-    mspaint_qt.h
+    paint_qt.h
 
-FORMS    += \
-    mspaint_qt.ui
+FORMS    +=

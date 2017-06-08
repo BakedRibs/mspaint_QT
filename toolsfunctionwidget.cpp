@@ -10,7 +10,23 @@ toolsFunctionWidget::toolsFunctionWidget(QWidget *parent) : QWidget(parent)
     colorSelectButton  = new QToolButton(this);    //颜色选取器
     magnifierButton    = new QToolButton(this);    //放大镜
 
-    this->setButtonAlignment(pencilButton , ":/icons/toolsFunctionWidget/pencil.png");
+    this->setButtonAlignment(pencilButton       , ":/icons/toolsFunctionWidget/pencil.png");
+    this->setButtonAlignment(fillWithColor      , ":/icons/toolsFunctionWidget/fillWithColor.png");
+    this->setButtonAlignment(textButton         , ":/icons/toolsFunctionWidget/text.png");
+    this->setButtonAlignment(eraserButton       , ":/icons/toolsFunctionWidget/eraser.png");
+    this->setButtonAlignment(colorSelectButton  , ":/icons/toolsFunctionWidget/colorSelect.png");
+    this->setButtonAlignment(magnifierButton    , ":/icons/toolsFunctionWidget/magnifier.png");
+
+    QGridLayout *toolsLayout = new QGridLayout;
+    toolsLayout->addWidget(pencilButton         , 0 , 0 , Qt::AlignCenter);
+    toolsLayout->addWidget(fillWithColor        , 0 , 1 , Qt::AlignCenter);
+    toolsLayout->addWidget(textButton           , 0 , 2 , Qt::AlignCenter);
+    toolsLayout->addWidget(eraserButton         , 1 , 0 , Qt::AlignCenter);
+    toolsLayout->addWidget(colorSelectButton    , 1 , 1 , Qt::AlignCenter);
+    toolsLayout->addWidget(magnifierButton      , 1 , 2 , Qt::AlignCenter);
+
+    this->setLayout(toolsLayout);
+    this->show();
 }
 
 toolsFunctionWidget::~toolsFunctionWidget()

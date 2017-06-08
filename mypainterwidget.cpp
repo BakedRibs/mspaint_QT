@@ -2,7 +2,7 @@
 
 MyPainterWidget::MyPainterWidget(QWidget *parent) : QWidget(parent)
 {
-    setMinimumSize(1024,768);
+    setMinimumSize(1024,100);
     //setMaximumSize(480,120);
     this->setMouseTracking(true);
     this->isPressed = false;
@@ -11,6 +11,7 @@ MyPainterWidget::MyPainterWidget(QWidget *parent) : QWidget(parent)
     QPalette pal;
     pal.setColor(QPalette::Background,Qt::white);
     this->setPalette(pal);
+    this->show();
 }
 
 MyPainterWidget::~MyPainterWidget()

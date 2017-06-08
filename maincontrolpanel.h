@@ -2,6 +2,8 @@
 #define MAINCONTROLPANEL_H
 
 #include <QWidget>
+#include <QHBoxLayout>
+#include "toolsfunctionwidget.h"
 
 class mainControlPanel : public QWidget
 {

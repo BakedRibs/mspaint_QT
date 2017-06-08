@@ -1,11 +1,11 @@
-#include "mspaint_qt.h"
 #include <QApplication>
+#include "paint_qt.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    mspaint_QT w;
-    w.showMaximized();
+    QApplication app(argc, argv);
+    paint_QT paint_qt;
+    paint_qt.show();
 
-    return a.exec();
+    return app.exec();
 }

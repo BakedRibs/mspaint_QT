@@ -2,7 +2,7 @@
 #define MSPAINT_QT_H
 
 #include <QMainWindow>
-#include <QGridLayout>
+#include <QVBoxLayout>
 
 namespace Ui {
 class mspaint_QT;

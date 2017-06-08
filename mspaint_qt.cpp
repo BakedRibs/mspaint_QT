@@ -9,12 +9,15 @@ mspaint_QT::mspaint_QT(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QGridLayout *mainLayout = new QGridLayout;
+    QVBoxLayout *mainLayout = new QVBoxLayout;
     MyPainterWidget *paintZone = new MyPainterWidget(this);
     mainControlPanel *topControlPanel = new mainControlPanel(this);
-    mainLayout->addWidget(topControlPanel,0,0);
-    mainLayout->addWidget(paintZone,1,0);
+    topControlPanel->setAttribute(Qt::WA_LayoutUsesWidgetRect);
+    paintZone->setAttribute(Qt::WA_LayoutUsesWidgetRect);
+    mainLayout->addWidget(topControlPanel);
+    mainLayout->addWidget(paintZone);
     this->setLayout(mainLayout);
+
 }
 
 mspaint_QT::~mspaint_QT()
