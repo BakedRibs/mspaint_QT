@@ -3,7 +3,10 @@
 
 #include <QWidget>
 #include <QGridLayout>
-#include <QToolButton>
+#include <QPushButton>
+#include <QApplication>
+#include <QTextCodec>
+#include <QLabel>
 
 class toolsFunctionWidget : public QWidget
 {
@@ -11,14 +14,15 @@ public:
     toolsFunctionWidget(QWidget *parent);
     ~toolsFunctionWidget();
 
-    QToolButton *pencilButton;      //铅笔
-    QToolButton *fillWithColor;     //用颜色填充
-    QToolButton *textButton;        //文本
-    QToolButton *eraserButton;      //橡皮擦
-    QToolButton *colorSelectButton; //颜色选取器
-    QToolButton *magnifierButton;   //放大镜
+    QPushButton *pencilButton;      //铅笔
+    QPushButton *fillWithColor;     //用颜色填充
+    QPushButton *textButton;        //文本
+    QPushButton *eraserButton;      //橡皮擦
+    QPushButton *colorSelectButton; //颜色选取器
+    QPushButton *magnifierButton;   //放大镜
+    QLabel *label;                  //标签
 
-    void setButtonAlignment(QToolButton *tmpButton , QString iconPath);
+    void setButtonAlignment(QPushButton *tmpButton , QString iconPath);
 };
 
-#endif // TOOLSFUNCTIONWIDGET_H
+#endif

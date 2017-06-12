@@ -1,5 +1,5 @@
-#ifndef DIALOG_H
-#define DIALOG_H
+#ifndef PAINT_QT_H
+#define PAINT_QT_H
 
 #include <QDialog>
 #include "maincontrolpanel.h"
@@ -11,6 +11,7 @@ class paint_QT : public QDialog
 
 public:
     paint_QT();
+    ~paint_QT();
 
 private:
 };

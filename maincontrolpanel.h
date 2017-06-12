@@ -12,4 +12,4 @@ public:
     ~mainControlPanel();
 };
 
-#endif // MAINCONTROLPANEL_H
+#endif

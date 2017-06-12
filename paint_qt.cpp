@@ -13,3 +13,7 @@ paint_QT::paint_QT()
     setLayout(mainLayout);
 
 }
+paint_QT::~paint_QT()
+{
+
+}
