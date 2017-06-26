@@ -22,7 +22,7 @@ public:
     QPushButton *magnifierButton;   //放大镜
     QLabel *label;                  //标签
 
-    void setButtonAlignment(QPushButton *tmpButton , QString iconPath);
+    void setButtonAlignment(QPushButton *tmpButton , QString iconPath); //统一设置button参数
 };
 
 #endif

@@ -17,12 +17,14 @@ SOURCES +=\
     maincontrolpanel.cpp \
     toolsfunctionwidget.cpp \
     main.cpp \
-    paint_qt.cpp
+    paint_qt.cpp \
+    colorsfunctionwidget.cpp
 
 HEADERS  += \
     mypainterwidget.h \
     maincontrolpanel.h \
     toolsfunctionwidget.h \
-    paint_qt.h
+    paint_qt.h \
+    colorsfunctionwidget.h
 
 FORMS    +=
