@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include "toolsfunctionwidget.h"
+#include "colorsfunctionwidget.h"
 
 class mainControlPanel : public QWidget
 {

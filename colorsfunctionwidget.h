@@ -7,6 +7,7 @@
 #include <QApplication>
 #include <QTextCodec>
 #include <QLabel>
+#include <QVector>
 
 class colorsFunctionWidget : public QWidget
 {
@@ -17,8 +18,7 @@ public:
     QPushButton *colorOneButton;
     QPushButton *colorTwoButton;
     QPushButton *paletteButton;
-    QList<QPushButton*> *changelessButtonList;
-    QList<QPushButton*> *changeableButtonList;
+    QPushButton *buttonList[30];
     QLabel *label;
 
     void colorButtonsInit();

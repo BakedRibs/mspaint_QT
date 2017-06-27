@@ -3,11 +3,14 @@
 mainControlPanel::mainControlPanel(QWidget *parent) : QWidget(parent)
 {
     setMinimumSize(1024,100);
-    QHBoxLayout *controlPanelLayout = new QHBoxLayout;
 
     toolsFunctionWidget *toolsFunction = new toolsFunctionWidget(this);
+    colorsFunctionWidget *colorsFunction = new colorsFunctionWidget(this);
 
+    QHBoxLayout *controlPanelLayout = new QHBoxLayout;
     controlPanelLayout->addWidget(toolsFunction);
+    controlPanelLayout->addWidget(colorsFunction);
+    controlPanelLayout->addStretch();
 
     this->setLayout(controlPanelLayout);
 }
