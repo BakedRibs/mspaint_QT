@@ -21,7 +21,8 @@ public:
     QPushButton *buttonList[30];
     QLabel *label;
 
-    void colorButtonsInit();
+    void colorButtonsInit(const int colors[][3]);
+    void buttonListIconCreate(QPushButton *tempButton,int Rint,int Gint,int Bint);
 };
 
 #endif // COLORSFUNCTIONWIDGET_H

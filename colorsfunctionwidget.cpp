@@ -2,7 +2,13 @@
 
 colorsFunctionWidget::colorsFunctionWidget(QWidget *parent) : QWidget(parent)
 {
-    colorButtonsInit();
+    int colorsList[30][3] = {{  0,  0,  0},{127,127,127},{136,  0, 21},{237, 28, 36},{255,127, 39}
+                            ,{255,242,  0},{ 34,177, 76},{  0,162,232},{ 63, 72,204},{163, 73,164}
+                            ,{255,255,255},{195,195,195},{185,122, 87},{255,174,201},{255,201, 14}
+                            ,{239,228,176},{181,230, 29},{153,217,234},{112,146,190},{200,191,231}
+                            ,{245,246,247},{245,246,247},{245,246,247},{245,246,247},{245,246,247}
+                            ,{245,246,247},{245,246,247},{245,246,247},{245,246,247},{245,246,247}};
+    colorButtonsInit(colorsList);
 
     QGridLayout *buttonListLayout = new QGridLayout;
     for(int i=0;i<30;i++)
@@ -41,7 +47,7 @@ colorsFunctionWidget::~colorsFunctionWidget()
 
 }
 
-void colorsFunctionWidget::colorButtonsInit()
+void colorsFunctionWidget::colorButtonsInit(const int colors[][3])
 {
     colorOneButton = new QPushButton(this);
     colorOneButton->setIconSize(QSize(40,40));
@@ -59,12 +65,19 @@ void colorsFunctionWidget::colorButtonsInit()
         buttonList[i] = new QPushButton(this);
         buttonList[i]->setIconSize(QSize(16,16));
         buttonList[i]->setFixedSize(QSize(22,22));
+        buttonListIconCreate(buttonList[i],colors[i][0],colors[i][1],colors[i][2]);
     }
-    QPixmap tempPixmap(16,16);
-    tempPixmap.fill(QColor(0,0,0));
-    QIcon *addf = new QIcon(tempPixmap);
-    buttonList[0]->setIcon(*addf);
-    //buttonList[0]->setStyleSheet("background-color:#000000");
-    //buttonList[0]->setPalette(QPalette(Qt::white));
-    //buttonList[0]->setAutoFillBackground(true);
+    for(int i=20;i<30;i++)
+    {
+        buttonList[i]->setEnabled(false);
+    }
 }
+
+void colorsFunctionWidget::buttonListIconCreate(QPushButton *tempButton,int Rint,int Gint,int Bint)
+{
+    QPixmap tempPixmap(16,16);
+    tempPixmap.fill(QColor(Rint,Gint,Bint));
+    QIcon *tempIcon = new QIcon(tempPixmap);
+    tempButton->setIcon(*tempIcon);
+}
+
