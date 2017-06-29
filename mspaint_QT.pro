@@ -18,13 +18,15 @@ SOURCES +=\
     toolsfunctionwidget.cpp \
     main.cpp \
     paint_qt.cpp \
-    colorsfunctionwidget.cpp
+    colorsfunctionwidget.cpp \
+    splitterfunctionwidget.cpp
 
 HEADERS  += \
     mypainterwidget.h \
     maincontrolpanel.h \
     toolsfunctionwidget.h \
     paint_qt.h \
-    colorsfunctionwidget.h
+    colorsfunctionwidget.h \
+    splitterfunctionwidget.h
 
 FORMS    +=
