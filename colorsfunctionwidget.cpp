@@ -49,23 +49,30 @@ colorsFunctionWidget::~colorsFunctionWidget()
 
 void colorsFunctionWidget::colorButtonsInit(const int colors[][3])
 {
-    colorOneButton = new QPushButton(this);
-    colorOneButton->setIconSize(QSize(40,40));
+    colorOneButton = new QToolButton(this);
+    colorOneButton->setIconSize(QSize(28,28));
+    colorOneButton->setFixedSize(QSize(44,80));
     colorOneButton->setText(QString::fromUtf8("颜色1"));
-    colorTwoButton = new QPushButton(this);
-    colorTwoButton->setIconSize(QSize(30,30));
+    buttonListIconCreate(colorOneButton,0,0,0,28,28);
+
+    colorTwoButton = new QToolButton(this);
+    colorTwoButton->setIconSize(QSize(20,20));
+
     colorTwoButton->setText(QString::fromUtf8("颜色2"));
-    paletteButton = new QPushButton(this);
+
+    paletteButton = new QToolButton(this);
     paletteButton->setIconSize(QSize(35,35));
     paletteButton->setIcon(QIcon(QApplication::applicationDirPath()+"/icons/colorsFunctionWidget/palette.png"));
+
     label = new QLabel(QString::fromUtf8("颜色") , this);
     label->setAlignment(Qt::AlignCenter);
+
     for(int i=0;i<30;i++)
     {
         buttonList[i] = new QPushButton(this);
         buttonList[i]->setIconSize(QSize(16,16));
         buttonList[i]->setFixedSize(QSize(22,22));
-        buttonListIconCreate(buttonList[i],colors[i][0],colors[i][1],colors[i][2]);
+        buttonListIconCreate(buttonList[i],colors[i][0],colors[i][1],colors[i][2],16,16);
     }
     for(int i=20;i<30;i++)
     {
@@ -73,11 +80,22 @@ void colorsFunctionWidget::colorButtonsInit(const int colors[][3])
     }
 }
 
-void colorsFunctionWidget::buttonListIconCreate(QPushButton *tempButton,int Rint,int Gint,int Bint)
+void colorsFunctionWidget::buttonListIconCreate(QPushButton *tempButton,int Rint,int Gint,int Bint,int pixWidth,int pixHeight)
 {
-    QPixmap tempPixmap(16,16);
+    QPixmap tempPixmap(pixWidth,pixHeight);
     tempPixmap.fill(QColor(Rint,Gint,Bint));
     QIcon *tempIcon = new QIcon(tempPixmap);
     tempButton->setIcon(*tempIcon);
+}
+
+void colorsFunctionWidget::buttonListIconCreate(QToolButton *tempButton,int Rint,int Gint,int Bint,int pixWidth,int pixHeight)
+{
+    QPixmap tempPixmap(pixWidth,pixHeight);
+    tempPixmap.fill(QColor(Rint,Gint,Bint));
+    QIcon *tempIcon = new QIcon(tempPixmap);
+    tempButton->setIcon(*tempIcon);
+
+    tempButton->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    tempButton->setCheckable(true);
 }
 
