@@ -3,10 +3,10 @@
 penwidthFunctionWidget::penwidthFunctionWidget(QWidget *parent) : QWidget(parent)
 {
     penWidthSpinBox = new QSpinBox(this);
-    penWidthSpinBox->setMinimum(1);
-    penWidthSpinBox->setMaximum(10);
-    penWidthSpinBox->setSingleStep(1);
-    penWidthSpinBox->setWrapping(true);
+    penWidthSpinBox->setMinimum(1);         //最小宽度1像素
+    penWidthSpinBox->setMaximum(10);        //最大宽度2像素
+    penWidthSpinBox->setSingleStep(1);      //每次增加1像素
+    penWidthSpinBox->setWrapping(true);     //超出范围回卷
     penWidthSpinBox->setFixedSize(52,40);
 
     label = new QLabel(QString::fromUtf8("粗细") , this);

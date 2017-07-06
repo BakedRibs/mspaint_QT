@@ -12,7 +12,7 @@ public:
     penwidthFunctionWidget(QWidget *parent);
     ~penwidthFunctionWidget();
 
-    QSpinBox *penWidthSpinBox;
+    QSpinBox *penWidthSpinBox;  //设置画笔宽度
     QLabel *label;
 };
 

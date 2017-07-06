@@ -20,7 +20,8 @@ SOURCES +=\
     paint_qt.cpp \
     colorsfunctionwidget.cpp \
     splitterfunctionwidget.cpp \
-    penwidthfunctionwidget.cpp
+    penwidthfunctionwidget.cpp \
+    shapesfunctionwidget.cpp
 
 HEADERS  += \
     mypainterwidget.h \
@@ -29,6 +30,7 @@ HEADERS  += \
     paint_qt.h \
     colorsfunctionwidget.h \
     splitterfunctionwidget.h \
-    penwidthfunctionwidget.h
+    penwidthfunctionwidget.h \
+    shapesfunctionwidget.h
 
 FORMS    +=

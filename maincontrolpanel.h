@@ -4,8 +4,9 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include "toolsfunctionwidget.h"
-#include "colorsfunctionwidget.h"
+#include "shapesfunctionwidget.h"
 #include "penwidthfunctionwidget.h"
+#include "colorsfunctionwidget.h"
 #include "splitterfunctionwidget.h"
 
 class mainControlPanel : public QWidget
