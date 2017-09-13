@@ -73,11 +73,11 @@ public:
     QPoint endPnt;              //终点
     bool isPressed;             //鼠标是否按下
 
-    paintParameters parametersTemp;     //暂时存放本次拖动使用的参数
-    QVector<myLine*> linesTemp;         //暂时存放本次拖动形成的线段
+    paintDetails *paintNowDetails;
     QVector<paintDetails*> currentPaintDetails; //本次程序绘制的所有图案
 
-    void paintType_pencil(QPainter *painterTemp);
+    void switchType(paintDetails *detailsTemp);
+    void paintType_pencil(paintDetails *detailsTemp);
 };
 
 #endif // MYPAINTERWIDGET_H
