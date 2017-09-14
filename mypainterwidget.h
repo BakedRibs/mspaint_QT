@@ -73,11 +73,11 @@ public:
     QPoint endPnt;              //终点
     bool isPressed;             //鼠标是否按下
 
-    paintDetails *paintNowDetails;
-    QVector<paintDetails*> currentPaintDetails; //本次程序绘制的所有图案
+    paintDetails paintNowDetails;
+    QVector<paintDetails> currentPaintDetails; //本次程序绘制的所有图案
 
-    void switchType(paintDetails *detailsTemp);
-    void paintType_pencil(paintDetails *detailsTemp);
+    void switchType(paintDetails detailsTemp);
+    void paintType_pencil(paintDetails detailsTemp);
 };
 
 #endif // MYPAINTERWIDGET_H

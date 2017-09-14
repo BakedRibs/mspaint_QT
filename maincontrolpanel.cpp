@@ -7,7 +7,7 @@ mainControlPanel::mainControlPanel(QWidget *parent) : QWidget(parent)
     toolsFunctionWidget *toolsFunction = new toolsFunctionWidget(this);
     shapesFunctionWidget *shapesFunction = new shapesFunctionWidget(this);
     penwidthFunctionWidget *penWidthFunction = new penwidthFunctionWidget(this);
-    colorsFunctionWidget *colorsFunction = new colorsFunctionWidget(this);
+    colorsFunction = new colorsFunctionWidget(this);
 
     splitterFunctionWidget *splitterFunction1 = new splitterFunctionWidget(this);
     splitterFunctionWidget *splitterFunction2 = new splitterFunctionWidget(this);

@@ -12,6 +12,8 @@
 
 class colorsFunctionWidget : public QWidget
 {
+    Q_OBJECT
+
 public:
     colorsFunctionWidget(QWidget *parent);
     ~colorsFunctionWidget();
@@ -21,10 +23,20 @@ public:
     QToolButton *paletteButton;     //编辑颜色按钮
     QPushButton *buttonList[30];    //选色框中30个色块按钮
     QLabel *label;
+    QColor *colorOne;
+    QColor *colorTwo;
 
     void colorButtonsInit(const int colors[][3]);
     void buttonListIconCreate(QPushButton *tempButton,int Rint,int Gint,int Bint,int pixWidth,int pixHeight);   //根据RGB颜色生成按钮的Icon
     void buttonListIconCreate(QToolButton *tempButton,int Rint,int Gint,int Bint,int pixWidth,int pixHeight);   //根据RGB颜色生成按钮的Icon（重载）
+
+public slots:
+    void colorOneButtonClick();
+    void colorTwoButtonClick();
+    void colorPaletteButtonClick();
+
+signals:
+    void colorButtonClicked(QColor *colorSel);
 };
 
 #endif // COLORSFUNCTIONWIDGET_H

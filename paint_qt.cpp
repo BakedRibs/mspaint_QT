@@ -17,3 +17,7 @@ paint_QT::~paint_QT()
 {
 
 }
+void paint_QT::colorButtonClicked()
+{
+
+}

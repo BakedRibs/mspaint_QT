@@ -13,6 +13,9 @@ public:
     paint_QT();
     ~paint_QT();
 
+public slots:
+    void colorButtonClicked();
+
 private:
 };
 

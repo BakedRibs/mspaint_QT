@@ -7,10 +7,9 @@ MyPainterWidget::MyPainterWidget(QWidget *parent) : QWidget(parent)
     this->setMouseTracking(true);
     this->isPressed = false;
 
-    paintNowDetails = new paintDetails();
-    paintNowDetails->parameters.paintColor = QColor(0,0,0);      //启动程序后，默认颜色为黑色
-    paintNowDetails->parameters.paintWidth = 1;                  //启动程序后，默认画笔粗细为1
-    paintNowDetails->parameters.paintType = pencil;              //启动程序后，默认画笔类型为铅笔
+    paintNowDetails.parameters.paintColor = QColor(0,0,0);      //启动程序后，默认颜色为黑色
+    paintNowDetails.parameters.paintWidth = 1;                  //启动程序后，默认画笔粗细为1
+    paintNowDetails.parameters.paintType = pencil;              //启动程序后，默认画笔类型为铅笔
 
     this->setAutoFillBackground(true);
     QPalette pal;
@@ -41,7 +40,7 @@ void MyPainterWidget::mouseMoveEvent(QMouseEvent *e)
         myLine *line = new myLine;
         line->startPnt = startPnt;
         line->endPnt = endPnt;
-        this->paintNowDetails->paintLines.push_back(line);
+        this->paintNowDetails.paintLines.push_back(line);
 
         update();
         startPnt = endPnt;
@@ -53,6 +52,7 @@ void MyPainterWidget::mouseReleaseEvent(QMouseEvent *e)
     setCursor(Qt::ArrowCursor);
     this->isPressed = false;
     this->currentPaintDetails.push_back(paintNowDetails);
+    paintNowDetails.paintLines.clear();
 }
 
 void MyPainterWidget::paintEvent(QPaintEvent *p)
@@ -67,9 +67,9 @@ void MyPainterWidget::paintEvent(QPaintEvent *p)
     switchType(paintNowDetails);
 }
 
-void MyPainterWidget::switchType(paintDetails *detailsTemp)
+void MyPainterWidget::switchType(paintDetails detailsTemp)
 {
-    switch (detailsTemp->parameters.paintType)
+    switch (detailsTemp.parameters.paintType)
     {
         case pencil:
             paintType_pencil(detailsTemp);
@@ -79,17 +79,17 @@ void MyPainterWidget::switchType(paintDetails *detailsTemp)
     }
 }
 
-void MyPainterWidget::paintType_pencil(paintDetails *detailsTemp)
+void MyPainterWidget::paintType_pencil(paintDetails detailsTemp)
 {
     QPainter *painter = new QPainter(this);
     QPen pen;
-    pen.setColor(detailsTemp->parameters.paintColor);
-    pen.setWidth(detailsTemp->parameters.paintWidth);
+    pen.setColor(detailsTemp.parameters.paintColor);
+    pen.setWidth(detailsTemp.parameters.paintWidth);
     painter->setPen(pen);
 
-    for(int i=0;i<detailsTemp->paintLines.size();i++)
+    for(int i=0;i<detailsTemp.paintLines.size();i++)
     {
-        myLine *pLine = detailsTemp->paintLines[i];
+        myLine *pLine = detailsTemp.paintLines[i];
         painter->drawLine(pLine->startPnt,pLine->endPnt);
     }
 }

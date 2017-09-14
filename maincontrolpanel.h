@@ -14,6 +14,8 @@ class mainControlPanel : public QWidget
 public:
     mainControlPanel(QWidget *parent);
     ~mainControlPanel();
+
+    colorsFunctionWidget *colorsFunction;
 };
 
 #endif
