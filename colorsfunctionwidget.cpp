@@ -44,11 +44,12 @@ colorsFunctionWidget::colorsFunctionWidget(QWidget *parent) : QWidget(parent)
     this->setLayout(colorsFunctionLayout);
     this->show();
 
-    connect(this->colorOneButton,SIGNAL(clicked()),this,SLOT(colorOneButtonClick()));
+    connect(colorOneButton,SIGNAL(clicked()),this,SLOT(colorOneButtonClick()));
     connect(colorTwoButton,SIGNAL(clicked()),this,SLOT(colorTwoButtonClick()));
+    connect(paletteButton,SIGNAL(clicked()),this,SLOT(colorPaletteButtonClick()));
     for(int i=0;i<30;i++)
     {
-        connect(buttonList[i],SIGNAL(clicked()),this,SLOT(colorPaletteButtonClick()));
+        connect(buttonList[i],SIGNAL(clicked()),this,SLOT(colorListButtonClick()));
     }
 }
 
@@ -95,6 +96,7 @@ void colorsFunctionWidget::colorButtonsInit(const int colors[][3])
     {
         buttonList[i]->setEnabled(false);                       //第三行的10个选色按钮暂时未使用，设置其为禁用
     }
+    buttonListNow = 20;
 }
 
 void colorsFunctionWidget::buttonListIconCreate(QPushButton *tempButton,int Rint,int Gint,int Bint,int pixWidth,int pixHeight)
@@ -131,7 +133,7 @@ void colorsFunctionWidget::colorTwoButtonClick()
     emit colorButtonClicked(colorTwo);
 }
 
-void colorsFunctionWidget::colorPaletteButtonClick()
+void colorsFunctionWidget::colorListButtonClick()
 {
     int R;
     int G;
@@ -163,5 +165,23 @@ void colorsFunctionWidget::colorPaletteButtonClick()
         colorTwoButton->setIcon(*tempIcon);                         //使用QIcon作为QToolButton的图标
     }
     emit colorButtonClicked(colorTemp);
+}
+
+void colorsFunctionWidget::colorPaletteButtonClick()
+{
+    QColor colorSelected = QColorDialog::getColor(Qt::black,this);
+    if(colorSelected.isValid())
+    {
+        buttonList[buttonListNow]->setEnabled(true);
+        QPixmap tempPixmap(16,16);                                  //根据宽*高生成特定大小的QPixmap
+        tempPixmap.fill(colorSelected);                             //使用RGB生成的颜色来填充QPixmap
+        QIcon *tempIcon = new QIcon(tempPixmap);                    //使用QPixmap生成新的QIcon
+        buttonList[buttonListNow]->setIcon(*tempIcon);              //使用QIcon作为QToolButton的图标
+        colorSelected.getRgb(&colorsList[buttonListNow][0],&colorsList[buttonListNow][1],&colorsList[buttonListNow][2]);
+        if(buttonListNow < 29)
+        {
+            buttonListNow++;
+        }
+    }
 }
 
