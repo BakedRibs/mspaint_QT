@@ -10,7 +10,7 @@ int colorsList[30][3] = {{  0,  0,  0},{127,127,127},{136,  0, 21},{237, 28, 36}
 colorsFunctionWidget::colorsFunctionWidget(QWidget *parent) : QWidget(parent)
 {
     colorButtonsInit(colorsList);                               //对所有按钮初始化
-    colorOneButton->setChecked(true);
+    colorOneButton->setChecked(true);                           //默认选择第一个按钮
 
     QGridLayout *buttonListLayout = new QGridLayout;            //选色框布局，存放30个选色按钮
     buttonListLayout->setSpacing(2);                            //设置选色按钮之间间隔为2像素
@@ -44,12 +44,12 @@ colorsFunctionWidget::colorsFunctionWidget(QWidget *parent) : QWidget(parent)
     this->setLayout(colorsFunctionLayout);
     this->show();
 
-    connect(colorOneButton,SIGNAL(clicked()),this,SLOT(colorOneButtonClick()));
-    connect(colorTwoButton,SIGNAL(clicked()),this,SLOT(colorTwoButtonClick()));
-    connect(paletteButton,SIGNAL(clicked()),this,SLOT(colorPaletteButtonClick()));
+    connect(colorOneButton,SIGNAL(clicked()),this,SLOT(colorOneButtonClick()));         //颜色1按钮按下
+    connect(colorTwoButton,SIGNAL(clicked()),this,SLOT(colorTwoButtonClick()));         //颜色2按钮按下
+    connect(paletteButton,SIGNAL(clicked()),this,SLOT(colorPaletteButtonClick()));      //调色板按钮按下
     for(int i=0;i<30;i++)
     {
-        connect(buttonList[i],SIGNAL(clicked()),this,SLOT(colorListButtonClick()));
+        connect(buttonList[i],SIGNAL(clicked()),this,SLOT(colorListButtonClick()));     //30个色块按钮逐一设置信号-槽链接
     }
 }
 
@@ -123,14 +123,14 @@ void colorsFunctionWidget::colorOneButtonClick()
 {
     colorOneButton->setChecked(true);
     colorTwoButton->setChecked(false);
-    emit colorButtonClicked(colorOne);
+    emit colorButtonClicked(colorOne);                          //颜色可能改变，发出信号
 }
 
 void colorsFunctionWidget::colorTwoButtonClick()
 {
     colorOneButton->setChecked(false);
     colorTwoButton->setChecked(true);
-    emit colorButtonClicked(colorTwo);
+    emit colorButtonClicked(colorTwo);                          //颜色可能改变，发出信号
 }
 
 void colorsFunctionWidget::colorListButtonClick()
@@ -141,46 +141,46 @@ void colorsFunctionWidget::colorListButtonClick()
     QColor *colorTemp;
     for(int i=0;i<30;i++)
     {
-        if(buttonList[i]->isChecked())
+        if(buttonList[i]->isChecked())                          //判断哪个色块按钮被按下
         {
             R = colorsList[i][0];
             G = colorsList[i][1];
             B = colorsList[i][2];
-            colorTemp = new QColor(R,G,B);
-            buttonList[i]->setChecked(false);
+            colorTemp = new QColor(R,G,B);                      //获取被按下按钮的颜色
+            buttonList[i]->setChecked(false);                   //在获取颜色后，使其不被选中，否则下次有其他按钮按下，就会有多于一个按钮同时按下，无法判断选中颜色
         }
     }
-    if(colorOneButton->isChecked())
+    if(colorOneButton->isChecked())                             //如果当前颜色1按钮被选择
     {
-        QPixmap tempPixmap(28,28);                                  //根据宽*高生成特定大小的QPixmap
-        tempPixmap.fill(QColor(R,G,B));                             //使用RGB生成的颜色来填充QPixmap
-        QIcon *tempIcon = new QIcon(tempPixmap);                    //使用QPixmap生成新的QIcon
-        colorOneButton->setIcon(*tempIcon);                         //使用QIcon作为QToolButton的图标
+        QPixmap tempPixmap(28,28);                              //根据宽*高生成特定大小的QPixmap
+        tempPixmap.fill(QColor(R,G,B));                         //使用RGB生成的颜色来填充QPixmap
+        QIcon *tempIcon = new QIcon(tempPixmap);                //使用QPixmap生成新的QIcon
+        colorOneButton->setIcon(*tempIcon);                     //使用QIcon作为QToolButton的图标
     }
     if(colorTwoButton->isChecked())
     {
-        QPixmap tempPixmap(20,20);                                  //根据宽*高生成特定大小的QPixmap
-        tempPixmap.fill(QColor(R,G,B));                             //使用RGB生成的颜色来填充QPixmap
-        QIcon *tempIcon = new QIcon(tempPixmap);                    //使用QPixmap生成新的QIcon
-        colorTwoButton->setIcon(*tempIcon);                         //使用QIcon作为QToolButton的图标
+        QPixmap tempPixmap(20,20);                              //根据宽*高生成特定大小的QPixmap
+        tempPixmap.fill(QColor(R,G,B));                         //使用RGB生成的颜色来填充QPixmap
+        QIcon *tempIcon = new QIcon(tempPixmap);                //使用QPixmap生成新的QIcon
+        colorTwoButton->setIcon(*tempIcon);                     //使用QIcon作为QToolButton的图标
     }
-    emit colorButtonClicked(colorTemp);
+    emit colorButtonClicked(colorTemp);                         //颜色可能改变，发出信号
 }
 
 void colorsFunctionWidget::colorPaletteButtonClick()
 {
-    QColor colorSelected = QColorDialog::getColor(Qt::black,this);
-    if(colorSelected.isValid())
+    QColor colorSelected = QColorDialog::getColor(Qt::black,this);  //弹出选色对话框
+    if(colorSelected.isValid())                                     //如果成功选色
     {
-        buttonList[buttonListNow]->setEnabled(true);
+        buttonList[buttonListNow]->setEnabled(true);                //激活一个未使用的色块按钮
         QPixmap tempPixmap(16,16);                                  //根据宽*高生成特定大小的QPixmap
         tempPixmap.fill(colorSelected);                             //使用RGB生成的颜色来填充QPixmap
         QIcon *tempIcon = new QIcon(tempPixmap);                    //使用QPixmap生成新的QIcon
         buttonList[buttonListNow]->setIcon(*tempIcon);              //使用QIcon作为QToolButton的图标
-        colorSelected.getRgb(&colorsList[buttonListNow][0],&colorsList[buttonListNow][1],&colorsList[buttonListNow][2]);
+        colorSelected.getRgb(&colorsList[buttonListNow][0],&colorsList[buttonListNow][1],&colorsList[buttonListNow][2]);    //用得到的颜色修改颜色列表中的RGB值
         if(buttonListNow < 29)
         {
-            buttonListNow++;
+            buttonListNow++;                                        //最后一个色块按钮使用完成后，每次选色更新最后一个色块
         }
     }
 }
