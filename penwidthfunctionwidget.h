@@ -14,6 +14,9 @@ public:
 
     QSpinBox *penWidthSpinBox;  //设置画笔宽度
     QLabel *label;
+
+signals:
+    void penWidthChanged();
 };
 
 #endif // PENWIDTHFUNCTIONWIDGET_H

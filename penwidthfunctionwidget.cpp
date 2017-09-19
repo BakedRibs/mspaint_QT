@@ -26,3 +26,7 @@ penwidthFunctionWidget::~penwidthFunctionWidget()
 
 }
 
+void penwidthFunctionWidget::penWidthChanged()
+{
+
+}
