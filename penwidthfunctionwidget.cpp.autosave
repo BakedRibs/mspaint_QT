@@ -8,7 +8,7 @@ penwidthFunctionWidget::penwidthFunctionWidget(QWidget *parent) : QWidget(parent
     penWidthSpinBox->setSingleStep(1);                      //每次增加1像素
     penWidthSpinBox->setWrapping(true);                     //超出范围回卷
     penWidthSpinBox->setFixedSize(52,40);                   //固定尺寸
-    penWidthSpinBox->setFocusPolicy(Qt::NoFocus);           //可以选定，不可修改
+    penWidthSpinBox->setFocusPolicy(Qt::NoFocus);           //SpinBox中的数字可以选定，不可修改
 
     label = new QLabel(QString::fromUtf8("粗细") , this);
     label->setAlignment(Qt::AlignCenter);
@@ -21,7 +21,7 @@ penwidthFunctionWidget::penwidthFunctionWidget(QWidget *parent) : QWidget(parent
     this->setLayout(penWidthLayout);
     this->show();
 
-    connect(penWidthSpinBox,SIGNAL(valueChanged(int)),this,SLOT(penWidthClicked(int)));
+    connect(penWidthSpinBox,SIGNAL(valueChanged(int)),this,SLOT(penWidthClicked(int)));     //在SpinBox值变化时，调用SLOT
 }
 
 penwidthFunctionWidget::~penwidthFunctionWidget()
@@ -31,6 +31,6 @@ penwidthFunctionWidget::~penwidthFunctionWidget()
 
 void penwidthFunctionWidget::penWidthClicked(int value)
 {
-    emit penWidthChanged(value);
+    emit penWidthChanged(value);                            //发出信号，传递修改后的宽度值
 }
 
