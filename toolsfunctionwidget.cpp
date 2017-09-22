@@ -33,15 +33,58 @@ toolsFunctionWidget::toolsFunctionWidget(QWidget *parent) : QWidget(parent)
     this->setFixedSize(120,100);
     this->setLayout(toolsLayout);
     this->show();
+
+    connect(pencilButton,       SIGNAL(clicked()),this,SLOT(buttonClicked()));      //各按钮和槽链接
+    connect(fillWithColor,      SIGNAL(clicked()),this,SLOT(buttonClicked()));      //各按钮和槽链接
+    connect(textButton,         SIGNAL(clicked()),this,SLOT(buttonClicked()));      //各按钮和槽链接
+    connect(eraserButton,       SIGNAL(clicked()),this,SLOT(buttonClicked()));      //各按钮和槽链接
+    connect(colorSelectButton,  SIGNAL(clicked()),this,SLOT(buttonClicked()));      //各按钮和槽链接
+    connect(magnifierButton,    SIGNAL(clicked()),this,SLOT(buttonClicked()));      //各按钮和槽链接
 }
 
 toolsFunctionWidget::~toolsFunctionWidget()
 {
 
 }
-//设置每个QToolButton的icon/iconSize/style等
+
 void toolsFunctionWidget::setButtonAlignment(QPushButton *tmpButton , QString iconPath)
 {
+    //设置每个QToolButton的icon/iconSize/style等
     tmpButton->setIcon(QIcon(iconPath));                    //设置图标
     tmpButton->setIconSize(QSize(20,20));                   //设置图标大小
+    tmpButton->setCheckable(true);                          //设置其可被按下，用来在clicked事件中，判断被按下的按钮
+}
+
+void toolsFunctionWidget::buttonClicked()
+{
+    if(pencilButton->isChecked())                           //如果按下的是pencil按钮
+    {
+        emit whichButtonClicked("pencilButton");            //将按钮名称发送出去
+        pencilButton->setChecked(false);                    //使按钮恢复未被选中状态
+    }
+    else if(fillWithColor->isChecked())
+    {
+        emit whichButtonClicked("fillWithColor");
+        fillWithColor->setChecked(false);
+    }
+    else if(textButton->isChecked())
+    {
+        emit whichButtonClicked("textButton");
+        textButton->setChecked(false);
+    }
+    else if(eraserButton->isChecked())
+    {
+        emit whichButtonClicked("eraserButton");
+        eraserButton->setChecked(false);
+    }
+    else if(colorSelectButton->isChecked())
+    {
+        emit whichButtonClicked("colorSelectButton");
+        colorSelectButton->setChecked(false);
+    }
+    else if(magnifierButton->isChecked())
+    {
+        emit whichButtonClicked("magnifierButton");
+        magnifierButton->setChecked(false);
+    }
 }
