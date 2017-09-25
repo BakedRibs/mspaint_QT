@@ -30,6 +30,11 @@ shapesFunctionWidget::shapesFunctionWidget(QWidget *parent) : QWidget(parent)
 
     this->setLayout(mainLayout);
     this->show();
+
+    for(int i=0;i<18;i++)
+    {
+        connect(shapesButtonList[i],SIGNAL(clicked()),this,SLOT(buttonClicked()));  //将18个按钮逐一设置信号-槽链接
+    }
 }
 
 shapesFunctionWidget::~shapesFunctionWidget()
@@ -41,9 +46,10 @@ void shapesFunctionWidget::shapesButtonsInit()
 {
     for(int i=0;i<18;i++)
     {
-        shapesButtonList[i] = new QPushButton(this);
-        shapesButtonList[i]->setIconSize(QSize(16,16));
-        shapesButtonList[i]->setFixedSize(QSize(22,22));
+        shapesButtonList[i] = new QPushButton(this);        //实例化
+        shapesButtonList[i]->setIconSize(QSize(16,16));     //设置图标大小
+        shapesButtonList[i]->setFixedSize(QSize(22,22));    //设置按钮大小
+        shapesButtonList[i]->setCheckable(true);            //设置按钮可以被选中，在按下时，方便判断是哪个按钮被按下
     }
     shapesButtonList[ 0]->setIcon(QIcon(QApplication::applicationDirPath()+"/icons/shapesFunctionWidget/line.png"));
     shapesButtonList[ 1]->setIcon(QIcon(QApplication::applicationDirPath()+"/icons/shapesFunctionWidget/curve.png"));
@@ -67,6 +73,17 @@ void shapesFunctionWidget::shapesButtonsInit()
     shapesButtonList[17]->setIcon(QIcon(QApplication::applicationDirPath()+"/icons/shapesFunctionWidget/flash.png"));
 
     label = new QLabel(QString::fromUtf8("形状") , this);
-    label->setAlignment(Qt::AlignCenter);       //设置label居中
+    label->setAlignment(Qt::AlignCenter);                   //设置label居中
 }
 
+void shapesFunctionWidget::buttonClicked()
+{
+    for(int i=0;i<18;i++)
+    {
+        if(shapesButtonList[i]->isChecked())                //如果按钮被选中
+        {
+            emit whichButtonClicked(i);                     //发送按钮被按下信号
+            shapesButtonList[i]->setChecked(false);         //信号发出后，按钮变回未被按下状态，方便下次再被按下时判断
+        }
+    }
+}
