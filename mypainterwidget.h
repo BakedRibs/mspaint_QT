@@ -52,8 +52,8 @@ struct paintParameters          //存放绘制参数
 };
 struct paintDetails
 {
-    paintParameters parameters; //绘制参数
-    QVector<myLine*> paintLines;          //线段序列
+    paintParameters parameters;         //绘制参数
+    QVector<myLine*> paintLines;        //线段序列
 };
 
 

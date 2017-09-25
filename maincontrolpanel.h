@@ -15,7 +15,10 @@ public:
     mainControlPanel(QWidget *parent);
     ~mainControlPanel();
 
-    colorsFunctionWidget *colorsFunction;
+    toolsFunctionWidget *toolsFunction;         //工具栏窗口
+    shapesFunctionWidget *shapesFunction;       //形状栏窗口
+    penwidthFunctionWidget *penWidthFunction;   //宽度栏窗口
+    colorsFunctionWidget *colorsFunction;       //颜色栏窗口
 };
 
 #endif

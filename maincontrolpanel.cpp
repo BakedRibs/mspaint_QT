@@ -4,9 +4,9 @@ mainControlPanel::mainControlPanel(QWidget *parent) : QWidget(parent)
 {
     setMinimumSize(1024,100);
 
-    toolsFunctionWidget *toolsFunction = new toolsFunctionWidget(this);
-    shapesFunctionWidget *shapesFunction = new shapesFunctionWidget(this);
-    penwidthFunctionWidget *penWidthFunction = new penwidthFunctionWidget(this);
+    toolsFunction = new toolsFunctionWidget(this);
+    shapesFunction = new shapesFunctionWidget(this);
+    penWidthFunction = new penwidthFunctionWidget(this);
     colorsFunction = new colorsFunctionWidget(this);
 
     splitterFunctionWidget *splitterFunction1 = new splitterFunctionWidget(this);

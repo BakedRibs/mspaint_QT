@@ -13,8 +13,15 @@ public:
     paint_QT();
     ~paint_QT();
 
+    QVBoxLayout *mainLayout;
+    MyPainterWidget *paintZone;
+    mainControlPanel *topControlPanel;
+
 public slots:
-    void colorButtonClicked();
+    void colorButtonClicked(QColor* tmpColor);
+    void toolsButtonClicked(QString tmpString);
+    void shapesButtonClicked(int tmpNum);
+    void penwidthButtonClicked(int tmpWid);
 
 private:
 };
