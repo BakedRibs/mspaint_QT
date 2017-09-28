@@ -69,24 +69,24 @@ void MyPainterWidget::paintEvent(QPaintEvent *p)
 
 void MyPainterWidget::switchType(paintDetails detailsTemp)
 {
+    QPainter *painter = new QPainter(this);             //创建Painter
+    QPen pen;
+    pen.setColor(detailsTemp.parameters.paintColor);    //为Pen设置颜色
+    pen.setWidth(detailsTemp.parameters.paintWidth);    //为Pen设置宽度
+    painter->setPen(pen);                               //为Painter设置Pen，将Painter传递给函数
+
     switch (detailsTemp.parameters.paintType)
     {
         case pencil:
-            paintType_pencil(detailsTemp);
+            paintType_pencil(detailsTemp,painter);      //所选为铅笔时，画图函数
             break;
         default:
             break;
     }
 }
 
-void MyPainterWidget::paintType_pencil(paintDetails detailsTemp)
+void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painter)
 {
-    QPainter *painter = new QPainter(this);
-    QPen pen;
-    pen.setColor(detailsTemp.parameters.paintColor);
-    pen.setWidth(detailsTemp.parameters.paintWidth);
-    painter->setPen(pen);
-
     for(int i=0;i<detailsTemp.paintLines.size();i++)
     {
         myLine *pLine = detailsTemp.paintLines[i];

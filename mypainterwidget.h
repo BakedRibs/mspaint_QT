@@ -77,7 +77,7 @@ public:
     QVector<paintDetails> currentPaintDetails; //本次程序绘制的所有图案
 
     void switchType(paintDetails detailsTemp);
-    void paintType_pencil(paintDetails detailsTemp);
+    void paintType_pencil(paintDetails detailsTemp,QPainter* painter);
 };
 
 #endif // MYPAINTERWIDGET_H

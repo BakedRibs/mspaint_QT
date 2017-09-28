@@ -4,10 +4,10 @@ mainControlPanel::mainControlPanel(QWidget *parent) : QWidget(parent)
 {
     setMinimumSize(1024,100);
 
-    toolsFunction = new toolsFunctionWidget(this);
-    shapesFunction = new shapesFunctionWidget(this);
-    penWidthFunction = new penwidthFunctionWidget(this);
-    colorsFunction = new colorsFunctionWidget(this);
+    toolsFunction = new toolsFunctionWidget(this);          //不在此处定义，而是在类中定义
+    shapesFunction = new shapesFunctionWidget(this);        //不在此处定义，而是在类中定义
+    penWidthFunction = new penwidthFunctionWidget(this);    //不在此处定义，而是在类中定义
+    colorsFunction = new colorsFunctionWidget(this);        //不在此处定义，而是在类中定义
 
     splitterFunctionWidget *splitterFunction1 = new splitterFunctionWidget(this);
     splitterFunctionWidget *splitterFunction2 = new splitterFunctionWidget(this);
