@@ -78,6 +78,7 @@ public:
 
     void switchType(paintDetails detailsTemp);
     void paintType_pencil(paintDetails detailsTemp,QPainter* painter);
+    void paintType_line(paintDetails detailsTemp,QPainter *painter);
 };
 
 #endif // MYPAINTERWIDGET_H

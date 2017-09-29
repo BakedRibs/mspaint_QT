@@ -93,3 +93,8 @@ void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painte
         painter->drawLine(pLine->startPnt,pLine->endPnt);
     }
 }
+
+void MyPainterWidget::paintType_line(paintDetails detailsTemp, QPainter *painter)
+{
+
+}
