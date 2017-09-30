@@ -77,8 +77,8 @@ public:
     QVector<paintDetails> currentPaintDetails; //本次程序绘制的所有图案
 
     void switchType(paintDetails detailsTemp);
-    void paintType_pencil(paintDetails detailsTemp,QPainter* painter);
-    void paintType_line(paintDetails detailsTemp,QPainter *painter);
+    void paintType_pencil(paintDetails detailsTemp,QPainter* painter);      //绘制函数：铅笔1
+    void paintType_line(paintDetails detailsTemp,QPainter *painter);        //绘制函数：直线7
 };
 
 #endif // MYPAINTERWIDGET_H
