@@ -78,6 +78,7 @@ public:
 
     void switchType(paintDetails detailsTemp);
     void paintType_pencil(paintDetails detailsTemp,QPainter* painter);      //绘制函数：铅笔1
+    void paintType_eraser(paintDetails detailsTemp,QPainter* painter);      //绘制函数：橡皮4
     void paintType_line(paintDetails detailsTemp,QPainter *painter);        //绘制函数：直线7
 };
 

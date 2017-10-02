@@ -88,7 +88,7 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
     }
 }
 
-void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painter)
+void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painter)  //0_pencil
 {
     for(int i=0;i<detailsTemp.paintLines.size();i++)        //对paintLines中的每一条线段画线
     {
@@ -97,7 +97,12 @@ void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painte
     }
 }
 
-void MyPainterWidget::paintType_line(paintDetails detailsTemp, QPainter *painter)
+void MyPainterWidget::paintType_eraser(paintDetails detailsTemp, QPainter *painter) //4_eraser
+{
+
+}
+
+void MyPainterWidget::paintType_line(paintDetails detailsTemp, QPainter *painter)   //7_line
 {
     if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
     {
