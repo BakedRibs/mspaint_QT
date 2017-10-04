@@ -80,6 +80,9 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
         case pencil:
             paintType_pencil(detailsTemp,painter);      //所选为铅笔时，画图函数
             break;
+        case eraser:
+            paintType_eraser(detailsTemp,painter);      //所选为橡皮时，画图函数
+            break;
         case line:
             paintType_line(detailsTemp,painter);        //所选为直线时，画图函数
             break;
@@ -99,7 +102,11 @@ void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painte
 
 void MyPainterWidget::paintType_eraser(paintDetails detailsTemp, QPainter *painter) //4_eraser
 {
-
+    for(int i=0;i<detailsTemp.paintLines.size();i++)        //对paintLines中的每一条线段画线
+    {
+        myLine *pLine = detailsTemp.paintLines[i];
+        painter->drawLine(pLine->startPnt,pLine->endPnt);   //每一条线段的起点和终点
+    }
 }
 
 void MyPainterWidget::paintType_line(paintDetails detailsTemp, QPainter *painter)   //7_line

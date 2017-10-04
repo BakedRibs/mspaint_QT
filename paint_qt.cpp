@@ -32,7 +32,9 @@ void paint_QT::toolsButtonClicked(QString tmpString)
 {
     if(tmpString == "pencilButton")
     {
-        paintZone->paintNowDetails.parameters.paintType = pencil;
+        paintZone->paintNowDetails.parameters.paintType = pencil;                   //每次点击铅笔图标时，重复设置此参数
+        paintZone->paintNowDetails.parameters.paintColor = QColor(0,0,0);
+        paintZone->paintNowDetails.parameters.paintWidth = 1;
     }
     else if(tmpString == "fillWithColor")
     {
@@ -44,7 +46,9 @@ void paint_QT::toolsButtonClicked(QString tmpString)
     }
     else if(tmpString == "eraserButton")
     {
-        paintZone->paintNowDetails.parameters.paintType = eraser;
+        paintZone->paintNowDetails.parameters.paintType = eraser;                   //每次点击橡皮图标时，重复设置此参数
+        paintZone->paintNowDetails.parameters.paintColor = QColor(255,255,255);
+        paintZone->paintNowDetails.parameters.paintWidth = 6;
     }
     else if(tmpString == "colorSelectButton")
     {
