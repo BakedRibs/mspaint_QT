@@ -86,12 +86,15 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
         case line:
             paintType_line(detailsTemp,painter);        //所选为直线时，画图函数
             break;
+        case rectangle:
+            paintType_rectangle(detailsTemp,painter);   //所选为矩形时，画图函数
+            break;
         default:
             break;
     }
 }
 
-void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painter)  //0_pencil
+void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painter)      //0_pencil
 {
     for(int i=0;i<detailsTemp.paintLines.size();i++)        //对paintLines中的每一条线段画线
     {
@@ -100,7 +103,7 @@ void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painte
     }
 }
 
-void MyPainterWidget::paintType_eraser(paintDetails detailsTemp, QPainter *painter) //4_eraser
+void MyPainterWidget::paintType_eraser(paintDetails detailsTemp, QPainter *painter)     //4_eraser
 {
     for(int i=0;i<detailsTemp.paintLines.size();i++)        //对paintLines中的每一条线段画线
     {
@@ -109,11 +112,21 @@ void MyPainterWidget::paintType_eraser(paintDetails detailsTemp, QPainter *paint
     }
 }
 
-void MyPainterWidget::paintType_line(paintDetails detailsTemp, QPainter *painter)   //7_line
+void MyPainterWidget::paintType_line(paintDetails detailsTemp, QPainter *painter)       //7_line
 {
     if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
     {
         int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
         painter->drawLine(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);     //paintLines中有多条线段，取第一条起点和最后一条终点画直线
+    }
+}
+
+void MyPainterWidget::paintType_rectangle(paintDetails detailsTemp, QPainter *painter)  //10_rectangle
+{
+    if(!detailsTemp.paintLines.isEmpty())
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        QRectF rectTmp(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);        //先用左上和右下两点生成矩形
+        painter->drawRect(rectTmp);                         //将矩形传递给painter，绘制图像
     }
 }
