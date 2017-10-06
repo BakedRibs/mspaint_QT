@@ -86,6 +86,9 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
         case line:
             paintType_line(detailsTemp,painter);        //所选为直线时，画图函数
             break;
+        case ellipse:
+            paintType_ellipse(detailsTemp,painter);     //所选为椭圆时，画图函数
+            break;
         case rectangle:
             paintType_rectangle(detailsTemp,painter);   //所选为矩形时，画图函数
             break;
@@ -118,6 +121,16 @@ void MyPainterWidget::paintType_line(paintDetails detailsTemp, QPainter *painter
     {
         int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
         painter->drawLine(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);     //paintLines中有多条线段，取第一条起点和最后一条终点画直线
+    }
+}
+
+void MyPainterWidget::paintType_ellipse(paintDetails detailsTemp, QPainter *painter)    //9_ellipse
+{
+    if(!detailsTemp.paintLines.isEmpty())
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        QRectF rectTmp(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);        //先用左上和右下两点生成矩形
+        painter->drawEllipse(rectTmp);                      //将矩形传递给painter，可以绘制出椭圆
     }
 }
 
