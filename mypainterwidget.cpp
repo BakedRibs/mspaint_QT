@@ -95,6 +95,9 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
         case triangle:
             paintType_triangle(detailsTemp,painter);    //所选为三角形时，画图函数
             break;
+        case rightAngledTriangle:
+            paintType_rightTri(detailsTemp,painter);    //所选为直角三角形时，画图函数
+            break;
         default:
             break;
     }
@@ -156,9 +159,25 @@ void MyPainterWidget::paintType_triangle(paintDetails detailsTemp, QPainter *pai
         double y_left_top = detailsTemp.paintLines[0]->startPnt.y();
         double x_right_bottom = detailsTemp.paintLines[i-1]->endPnt.x();            //右下角点
         double y_right_bottom = detailsTemp.paintLines[i-1]->endPnt.y();
-        QPointF points[3] = {QPointF((x_left_top+x_right_bottom)/2,y_left_top),     //等腰三角形定点
-                             QPointF(x_left_top,y_right_bottom),                    //等腰三角形底点
-                             QPointF(x_right_bottom,y_right_bottom)};               //等腰三角形底点
+        QPointF points[3] = {QPointF((x_left_top+x_right_bottom)/2,y_left_top),     //等腰三角形顶角
+                             QPointF(x_left_top,y_right_bottom),                    //等腰三角形底角
+                             QPointF(x_right_bottom,y_right_bottom)};               //等腰三角形底角
+        painter->drawPolygon(points,3);                     //采用绘制多边形功能，将三个点传递给painter，绘制图像
+    }
+}
+
+void MyPainterWidget::paintType_rightTri(paintDetails detailsTemp, QPainter *painter)   //13_rightAngledTriangle
+{
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        double x_left_top = detailsTemp.paintLines[0]->startPnt.x();                //左上角点
+        double y_left_top = detailsTemp.paintLines[0]->startPnt.y();
+        double x_right_bottom = detailsTemp.paintLines[i-1]->endPnt.x();            //右下角点
+        double y_right_bottom = detailsTemp.paintLines[i-1]->endPnt.y();
+        QPointF points[3] = {QPointF(x_left_top,y_left_top),                        //直角三角形顶角
+                             QPointF(x_left_top,y_right_bottom),                    //直角三角形直角
+                             QPointF(x_right_bottom,y_right_bottom)};               //直角三角形底角
         painter->drawPolygon(points,3);                     //采用绘制多边形功能，将三个点传递给painter，绘制图像
     }
 }
