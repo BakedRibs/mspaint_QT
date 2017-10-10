@@ -82,6 +82,7 @@ public:
     void paintType_line(paintDetails detailsTemp,QPainter *painter);        //绘制函数：直线7
     void paintType_ellipse(paintDetails detailsTemp,QPainter *painter);     //绘制函数：椭圆9
     void paintType_rectangle(paintDetails detailsTemp,QPainter *painter);   //绘制函数：矩形10
+    void paintType_triangle(paintDetails detailsTemp,QPainter *painter);    //绘制函数：三角形12
 };
 
 #endif // MYPAINTERWIDGET_H

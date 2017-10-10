@@ -92,6 +92,9 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
         case rectangle:
             paintType_rectangle(detailsTemp,painter);   //所选为矩形时，画图函数
             break;
+        case triangle:
+            paintType_triangle(detailsTemp,painter);    //所选为三角形时，画图函数
+            break;
         default:
             break;
     }
@@ -126,7 +129,7 @@ void MyPainterWidget::paintType_line(paintDetails detailsTemp, QPainter *painter
 
 void MyPainterWidget::paintType_ellipse(paintDetails detailsTemp, QPainter *painter)    //9_ellipse
 {
-    if(!detailsTemp.paintLines.isEmpty())
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
     {
         int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
         QRectF rectTmp(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);        //先用左上和右下两点生成矩形
@@ -136,10 +139,26 @@ void MyPainterWidget::paintType_ellipse(paintDetails detailsTemp, QPainter *pain
 
 void MyPainterWidget::paintType_rectangle(paintDetails detailsTemp, QPainter *painter)  //10_rectangle
 {
-    if(!detailsTemp.paintLines.isEmpty())
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
     {
         int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
         QRectF rectTmp(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);        //先用左上和右下两点生成矩形
         painter->drawRect(rectTmp);                         //将矩形传递给painter，绘制图像
+    }
+}
+
+void MyPainterWidget::paintType_triangle(paintDetails detailsTemp, QPainter *painter)   //12_triangle
+{
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        double x_left_top = detailsTemp.paintLines[0]->startPnt.x();                //左上角点
+        double y_left_top = detailsTemp.paintLines[0]->startPnt.y();
+        double x_right_bottom = detailsTemp.paintLines[i-1]->endPnt.x();            //右下角点
+        double y_right_bottom = detailsTemp.paintLines[i-1]->endPnt.y();
+        QPointF points[3] = {QPointF((x_left_top+x_right_bottom)/2,y_left_top),     //等腰三角形定点
+                             QPointF(x_left_top,y_right_bottom),                    //等腰三角形底点
+                             QPointF(x_right_bottom,y_right_bottom)};               //等腰三角形底点
+        painter->drawPolygon(points,3);                     //采用绘制多边形功能，将三个点传递给painter，绘制图像
     }
 }
