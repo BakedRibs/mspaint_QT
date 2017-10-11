@@ -84,6 +84,7 @@ public:
     void paintType_rectangle(paintDetails detailsTemp,QPainter *painter);   //绘制函数：矩形10
     void paintType_triangle(paintDetails detailsTemp,QPainter *painter);    //绘制函数：三角形12
     void paintType_rightTri(paintDetails detailsTemp,QPainter *painter);    //绘制函数：直角三角形13
+    void paintType_diamond(paintDetails detailsTemp,QPainter *painter);     //绘制函数：菱形14
 };
 
 #endif // MYPAINTERWIDGET_H

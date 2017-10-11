@@ -98,6 +98,9 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
         case rightAngledTriangle:
             paintType_rightTri(detailsTemp,painter);    //所选为直角三角形时，画图函数
             break;
+        case diamond:
+            paintType_diamond(detailsTemp,painter);     //所选为菱形时，画图函数
+            break;
         default:
             break;
     }
@@ -179,5 +182,22 @@ void MyPainterWidget::paintType_rightTri(paintDetails detailsTemp, QPainter *pai
                              QPointF(x_left_top,y_right_bottom),                    //直角三角形直角
                              QPointF(x_right_bottom,y_right_bottom)};               //直角三角形底角
         painter->drawPolygon(points,3);                     //采用绘制多边形功能，将三个点传递给painter，绘制图像
+    }
+}
+
+void MyPainterWidget::paintType_diamond(paintDetails detailsTemp, QPainter *painter)    //14_diamond
+{
+    if(!detailsTemp.paintLines.isEmpty())
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        double x_left_top = detailsTemp.paintLines[0]->startPnt.x();                    //左上角点
+        double y_left_top = detailsTemp.paintLines[0]->startPnt.y();
+        double x_right_bottom = detailsTemp.paintLines[i-1]->endPnt.x();                //右下角点
+        double y_right_bottom = detailsTemp.paintLines[i-1]->endPnt.y();
+        QPointF points[4] = {QPointF((x_left_top+x_right_bottom)/2,y_left_top),         //顶
+                             QPointF(x_right_bottom,(y_left_top+y_right_bottom)/2),     //右
+                             QPointF((x_left_top+x_right_bottom)/2,y_right_bottom),     //底
+                             QPointF(x_left_top,(y_left_top+y_right_bottom)/2)};        //左
+        painter->drawPolygon(points,4);                     //采用绘制多边形功能，将四个点传递给painter，绘制图像
     }
 }
