@@ -78,28 +78,37 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
     switch (detailsTemp.parameters.paintType)
     {
         case pencil:
-            paintType_pencil(detailsTemp,painter);      //所选为铅笔时，画图函数
+            paintType_pencil(detailsTemp,painter);      //1所选为铅笔时，画图函数
             break;
         case eraser:
-            paintType_eraser(detailsTemp,painter);      //所选为橡皮时，画图函数
+            paintType_eraser(detailsTemp,painter);      //4所选为橡皮时，画图函数
             break;
         case line:
-            paintType_line(detailsTemp,painter);        //所选为直线时，画图函数
+            paintType_line(detailsTemp,painter);        //7所选为直线时，画图函数
+            break;
+        case curve:
+            paintType_curve(detailsTemp,painter);       //8所选为曲线时，画图函数
             break;
         case ellipse:
-            paintType_ellipse(detailsTemp,painter);     //所选为椭圆时，画图函数
+            paintType_ellipse(detailsTemp,painter);     //9所选为椭圆时，画图函数
             break;
         case rectangle:
-            paintType_rectangle(detailsTemp,painter);   //所选为矩形时，画图函数
+            paintType_rectangle(detailsTemp,painter);   //10所选为矩形时，画图函数
+            break;
+        case roundedRectangle:
+            paintType_roundedRect(detailsTemp,painter); //11所选为圆角矩形时，画图函数
             break;
         case triangle:
-            paintType_triangle(detailsTemp,painter);    //所选为三角形时，画图函数
+            paintType_triangle(detailsTemp,painter);    //12所选为三角形时，画图函数
             break;
         case rightAngledTriangle:
-            paintType_rightTri(detailsTemp,painter);    //所选为直角三角形时，画图函数
+            paintType_rightTri(detailsTemp,painter);    //13所选为直角三角形时，画图函数
             break;
         case diamond:
-            paintType_diamond(detailsTemp,painter);     //所选为菱形时，画图函数
+            paintType_diamond(detailsTemp,painter);     //14所选为菱形时，画图函数
+            break;
+        case pentagon:
+            paintType_pentagon(detailsTemp,painter);    //15所选为五边形时，画图函数
             break;
         default:
             break;
@@ -108,19 +117,25 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
 
 void MyPainterWidget::paintType_pencil(paintDetails detailsTemp,QPainter *painter)      //0_pencil
 {
-    for(int i=0;i<detailsTemp.paintLines.size();i++)        //对paintLines中的每一条线段画线
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
     {
-        myLine *pLine = detailsTemp.paintLines[i];
-        painter->drawLine(pLine->startPnt,pLine->endPnt);   //每一条线段的起点和终点
+        for(int i=0;i<detailsTemp.paintLines.size();i++)        //对paintLines中的每一条线段画线
+        {
+            myLine *pLine = detailsTemp.paintLines[i];
+            painter->drawLine(pLine->startPnt,pLine->endPnt);   //每一条线段的起点和终点
+        }
     }
 }
 
 void MyPainterWidget::paintType_eraser(paintDetails detailsTemp, QPainter *painter)     //4_eraser
 {
-    for(int i=0;i<detailsTemp.paintLines.size();i++)        //对paintLines中的每一条线段画线
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
     {
-        myLine *pLine = detailsTemp.paintLines[i];
-        painter->drawLine(pLine->startPnt,pLine->endPnt);   //每一条线段的起点和终点
+        for(int i=0;i<detailsTemp.paintLines.size();i++)        //对paintLines中的每一条线段画线
+        {
+            myLine *pLine = detailsTemp.paintLines[i];
+            painter->drawLine(pLine->startPnt,pLine->endPnt);   //每一条线段的起点和终点
+        }
     }
 }
 
@@ -130,6 +145,16 @@ void MyPainterWidget::paintType_line(paintDetails detailsTemp, QPainter *painter
     {
         int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
         painter->drawLine(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);     //paintLines中有多条线段，取第一条起点和最后一条终点画直线
+    }
+}
+
+void MyPainterWidget::paintType_curve(paintDetails detailsTemp, QPainter *painter)      //8_curve
+{
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        QRectF rectTmp(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);        //先用左上和右下两点生成矩形
+        painter->drawArc(rectTmp,30*16,120*16);             //将矩形和角度传递给painter
     }
 }
 
@@ -150,6 +175,16 @@ void MyPainterWidget::paintType_rectangle(paintDetails detailsTemp, QPainter *pa
         int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
         QRectF rectTmp(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);        //先用左上和右下两点生成矩形
         painter->drawRect(rectTmp);                         //将矩形传递给painter，绘制图像
+    }
+}
+
+void MyPainterWidget::paintType_roundedRect(paintDetails detailsTemp, QPainter *painter)//11_roundedRectangle
+{
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        QRectF rectTmp(detailsTemp.paintLines[0]->startPnt,detailsTemp.paintLines[i-1]->endPnt);        //先用左上和右下两点生成矩形
+        painter->drawRoundedRect(rectTmp,15.0,25.0,Qt::RelativeSize);               //将矩形传递给painter，绘制出圆角矩形
     }
 }
 
@@ -199,5 +234,29 @@ void MyPainterWidget::paintType_diamond(paintDetails detailsTemp, QPainter *pain
                              QPointF((x_left_top+x_right_bottom)/2,y_right_bottom),     //底
                              QPointF(x_left_top,(y_left_top+y_right_bottom)/2)};        //左
         painter->drawPolygon(points,4);                     //采用绘制多边形功能，将四个点传递给painter，绘制图像
+    }
+}
+
+void MyPainterWidget::paintType_pentagon(paintDetails detailsTemp, QPainter *painter)   //15_pentagon
+{
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        double x_left_top = detailsTemp.paintLines[0]->startPnt.x();                //左上角点
+        double y_left_top = detailsTemp.paintLines[0]->startPnt.y();
+        double x_right_bottom = detailsTemp.paintLines[i-1]->endPnt.x();            //右下角点
+        double y_right_bottom = detailsTemp.paintLines[i-1]->endPnt.y();
+        double widthQ = x_right_bottom - x_left_top;
+        double heightQ = y_right_bottom - y_left_top;
+        double ratioA = sin(3.1415926 * 36 / 180)/(sin(2.1415926 * 36 / 180) + sin(3.1415926 * 72 / 180));
+        double ratioB = cos(3.1415926 * 72 / 180)/(1 + 2 * cos(3.1415926 * 72 / 180));
+        double widthPlus = widthQ * ratioB;
+        double heightPlus = heightQ * ratioA;
+        QPointF points[5] = {QPointF((x_left_top+x_right_bottom)/2,y_left_top), //a
+                             QPointF(x_right_bottom,y_left_top+heightPlus),     //b
+                             QPointF(x_right_bottom-widthPlus,y_right_bottom),  //c
+                             QPointF(x_left_top+widthPlus,y_right_bottom),      //d
+                             QPointF(x_left_top,y_left_top+heightPlus)};        //e
+        painter->drawPolygon(points,5);                     //采用绘制多边形功能，将五个点传递给painter，绘制图像
     }
 }
