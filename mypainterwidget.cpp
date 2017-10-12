@@ -246,17 +246,17 @@ void MyPainterWidget::paintType_pentagon(paintDetails detailsTemp, QPainter *pai
         double y_left_top = detailsTemp.paintLines[0]->startPnt.y();
         double x_right_bottom = detailsTemp.paintLines[i-1]->endPnt.x();            //右下角点
         double y_right_bottom = detailsTemp.paintLines[i-1]->endPnt.y();
-        double widthQ = x_right_bottom - x_left_top;
-        double heightQ = y_right_bottom - y_left_top;
-        double ratioA = sin(3.1415926 * 36 / 180)/(sin(2.1415926 * 36 / 180) + sin(3.1415926 * 72 / 180));
-        double ratioB = cos(3.1415926 * 72 / 180)/(1 + 2 * cos(3.1415926 * 72 / 180));
+        double widthQ = x_right_bottom - x_left_top;                                //宽度
+        double heightQ = y_right_bottom - y_left_top;                               //高度
+        double ratioA = sin(3.1415926 * 36 / 180)/(sin(2.1415926 * 36 / 180) + sin(3.1415926 * 72 / 180));  //长度比例
+        double ratioB = cos(3.1415926 * 72 / 180)/(1 + 2 * cos(3.1415926 * 72 / 180));                      //长度比例
         double widthPlus = widthQ * ratioB;
         double heightPlus = heightQ * ratioA;
-        QPointF points[5] = {QPointF((x_left_top+x_right_bottom)/2,y_left_top), //a
-                             QPointF(x_right_bottom,y_left_top+heightPlus),     //b
-                             QPointF(x_right_bottom-widthPlus,y_right_bottom),  //c
-                             QPointF(x_left_top+widthPlus,y_right_bottom),      //d
-                             QPointF(x_left_top,y_left_top+heightPlus)};        //e
+        QPointF points[5] = {QPointF((x_left_top+x_right_bottom)/2,y_left_top),     //a
+                             QPointF(x_right_bottom,y_left_top+heightPlus),         //b
+                             QPointF(x_right_bottom-widthPlus,y_right_bottom),      //c
+                             QPointF(x_left_top+widthPlus,y_right_bottom),          //d
+                             QPointF(x_left_top,y_left_top+heightPlus)};            //e
         painter->drawPolygon(points,5);                     //采用绘制多边形功能，将五个点传递给painter，绘制图像
     }
 }
