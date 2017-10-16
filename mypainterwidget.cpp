@@ -113,6 +113,9 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
         case hexagon:
             paintType_hexagon(detailsTemp,painter);     //16所选为六边形时，画图函数
             break;
+        case arrow:
+            paintType_arrow(detailsTemp,painter);       //17所选为箭头时，画图函数
+            break;
         default:
             break;
     }
@@ -281,5 +284,25 @@ void MyPainterWidget::paintType_hexagon(paintDetails detailsTemp, QPainter *pain
                              QPointF(x_right_bottom-widthQ/4,y_right_bottom),       //d
                              QPointF(x_left_top+widthQ/4,y_right_bottom)};          //e
         painter->drawPolygon(points,6);                     //采用绘制多边形功能，将六个点传递给painter，绘制图像
+    }
+}
+
+void MyPainterWidget::paintType_arrow(paintDetails detailsTemp, QPainter *painter)      //17_arrow
+{
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        double x_left_top = detailsTemp.paintLines[0]->startPnt.x();                //左上角点
+        double y_left_top = detailsTemp.paintLines[0]->startPnt.y();
+        double x_right_bottom = detailsTemp.paintLines[i-1]->endPnt.x();            //右下角点
+        double y_right_bottom = detailsTemp.paintLines[i-1]->endPnt.y();
+        double widthQ = x_right_bottom - x_left_top;                                //宽度
+        QPointF points[4] = {QPointF(x_left_top,(y_left_top+y_right_bottom)/2),     //a
+                             QPointF(x_right_bottom,(y_left_top+y_right_bottom)/2), //b
+                             QPointF(x_right_bottom-widthQ/8,y_left_top),           //c
+                             QPointF(x_right_bottom-widthQ/8,y_right_bottom)};      //d
+        painter->drawLine(points[0],points[1]);             //绘制标示箭头的三条线
+        painter->drawLine(points[2],points[1]);
+        painter->drawLine(points[3],points[1]);
     }
 }

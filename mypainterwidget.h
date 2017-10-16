@@ -90,6 +90,7 @@ public:
     void paintType_diamond(paintDetails detailsTemp,QPainter *painter);     //绘制函数：菱形14
     void paintType_pentagon(paintDetails detailsTemp,QPainter *painter);    //绘制函数：五边形15
     void paintType_hexagon(paintDetails detailsTemp,QPainter *painter);     //绘制函数：六边形16
+    void paintType_arrow(paintDetails detailsTemp,QPainter *painter);       //绘制函数：箭头17
 };
 
 #endif // MYPAINTERWIDGET_H
