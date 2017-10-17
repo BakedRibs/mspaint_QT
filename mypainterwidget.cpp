@@ -116,6 +116,9 @@ void MyPainterWidget::switchType(paintDetails detailsTemp)
         case arrow:
             paintType_arrow(detailsTemp,painter);       //17所选为箭头时，画图函数
             break;
+        case fourPointedStar:
+            paintType_4pStar(detailsTemp,painter);      //18所选为四角星时，画图函数
+            break;
         default:
             break;
     }
@@ -304,5 +307,28 @@ void MyPainterWidget::paintType_arrow(paintDetails detailsTemp, QPainter *painte
         painter->drawLine(points[0],points[1]);             //绘制标示箭头的三条线
         painter->drawLine(points[2],points[1]);
         painter->drawLine(points[3],points[1]);
+    }
+}
+
+void MyPainterWidget::paintType_4pStar(paintDetails detailsTemp, QPainter *painter)     //18_fourPointedStar
+{
+    if(!detailsTemp.paintLines.isEmpty())                   //非空时进入，防止调用空vector产生崩溃
+    {
+        int i = detailsTemp.paintLines.size();              //找出paintLines中最后一条线段
+        double x_left_top = detailsTemp.paintLines[0]->startPnt.x();                //左上角点
+        double y_left_top = detailsTemp.paintLines[0]->startPnt.y();
+        double x_right_bottom = detailsTemp.paintLines[i-1]->endPnt.x();            //右下角点
+        double y_right_bottom = detailsTemp.paintLines[i-1]->endPnt.y();
+        double widthQ = x_right_bottom - x_left_top;                                //宽度
+        double heightQ = y_right_bottom - y_left_top;                               //高度
+        QPointF points[8] = {QPointF(x_left_top+widthQ/2,y_left_top),     //a
+                             QPointF(x_left_top+widthQ*5/8,y_left_top+heightQ*3/8), //b
+                             QPointF(x_right_bottom,y_left_top+heightQ/2),          //c
+                             QPointF(x_left_top+widthQ*5/8,y_left_top+heightQ*5/8), //d
+                             QPointF(x_left_top+widthQ/2,y_right_bottom),           //e
+                             QPointF(x_left_top+widthQ*3/8,y_left_top+heightQ*5/8), //f
+                             QPointF(x_left_top,y_left_top+heightQ/2),              //g
+                             QPointF(x_left_top+widthQ*3/8,y_left_top+heightQ*3/8)};//h
+        painter->drawPolygon(points,8);                     //采用绘制多边形功能，将八个点传递给painter，绘制图像
     }
 }
