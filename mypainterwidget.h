@@ -92,6 +92,7 @@ public:
     void paintType_hexagon(paintDetails detailsTemp,QPainter *painter);     //绘制函数：六边形16
     void paintType_arrow(paintDetails detailsTemp,QPainter *painter);       //绘制函数：箭头17
     void paintType_4pStar(paintDetails detailsTemp,QPainter *painter);      //绘制函数：四角星18
+    void paintType_5pStar(paintDetails detailsTemp,QPainter *painter);      //绘制函数：五角星19
 };
 
 #endif // MYPAINTERWIDGET_H
