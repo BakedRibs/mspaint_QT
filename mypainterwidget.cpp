@@ -371,3 +371,8 @@ void MyPainterWidget::paintType_5pStar(paintDetails detailsTemp, QPainter *paint
         painter->drawPolygon(pointsA,10);                     //采用绘制多边形功能，将五个点传递给painter，绘制图像
     }
 }
+
+void MyPainterWidget::paintType_6pStar(paintDetails detailsTemp, QPainter *painter)     //20_sixPointedStar
+{
+
+}

@@ -93,6 +93,7 @@ public:
     void paintType_arrow(paintDetails detailsTemp,QPainter *painter);       //绘制函数：箭头17
     void paintType_4pStar(paintDetails detailsTemp,QPainter *painter);      //绘制函数：四角星18
     void paintType_5pStar(paintDetails detailsTemp,QPainter *painter);      //绘制函数：五角星19
+    void paintType_6pStar(paintDetails detailsTemp,QPainter *painter);      //绘制函数：六角星20
 };
 
 #endif // MYPAINTERWIDGET_H
