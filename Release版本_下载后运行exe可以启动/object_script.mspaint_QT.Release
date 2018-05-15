@@ -1,0 +1,16 @@
+INPUT(
+./release\mypainterwidget.o
+./release\maincontrolpanel.o
+./release\toolsfunctionwidget.o
+./release\main.o
+./release\paint_qt.o
+./release\colorsfunctionwidget.o
+./release\splitterfunctionwidget.o
+./release\penwidthfunctionwidget.o
+./release\shapesfunctionwidget.o
+./release\moc_toolsfunctionwidget.o
+./release\moc_paint_qt.o
+./release\moc_colorsfunctionwidget.o
+./release\moc_penwidthfunctionwidget.o
+./release\moc_shapesfunctionwidget.o
+);

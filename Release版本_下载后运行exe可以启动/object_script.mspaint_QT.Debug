@@ -1,0 +1,16 @@
+INPUT(
+./debug\mypainterwidget.o
+./debug\maincontrolpanel.o
+./debug\toolsfunctionwidget.o
+./debug\main.o
+./debug\paint_qt.o
+./debug\colorsfunctionwidget.o
+./debug\splitterfunctionwidget.o
+./debug\penwidthfunctionwidget.o
+./debug\shapesfunctionwidget.o
+./debug\moc_toolsfunctionwidget.o
+./debug\moc_paint_qt.o
+./debug\moc_colorsfunctionwidget.o
+./debug\moc_penwidthfunctionwidget.o
+./debug\moc_shapesfunctionwidget.o
+);
